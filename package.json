@@ -1,0 +1,24 @@
+{
+  "name": "renting-cars",
+  "version": "1.0.0",
+  "description": "Nos han encargado desarrollar un sitio web dedicado al alquiler de vehículos. Constará de una parte pública (para los clientes) y una parte privada (para la gestión de la empresa).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git + https://github.com/manami-n/Cief_NODE_RentingCar"
+  },
+  "keywords": [
+    "Vehiculos",
+    "Renting"
+  ],
+  "author": "Manami",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1"
+  }
+}

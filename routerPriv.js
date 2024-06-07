@@ -6,9 +6,9 @@ const path = require('path');
 const {connMySQL, configMySQL} = require('./mysql.js');
 const routerPriv = express.Router();
 
+//================= ROUTER ================
 
-//================================================================
-// loading the tables
+// ----- 0 : index -----
 routerPriv.get("/", (req, res) => {
     const select = `SELECT md.*, 
                     SUM(al.facturacion) AS total_facturacion,
@@ -38,24 +38,20 @@ routerPriv.get("/stock", (req, res) => {
        })
 })
 //  ↓
-// (INSERT) getting the /stock form information
+// ----- 1 : new vehicle registration -----
 routerPriv.post("/insert", (req, res) => {
     const {nombre_modelo, unidades_totales, personas, puertas, cambio, maletas, tipo, precioDia} = req.body
-    
     const insert = `INSERT INTO modelos (nombre_modelo, unidades_totales, personas, puertas, cambio, maletas, tipo, precioDia) VALUES ('${nombre_modelo}','${unidades_totales}', '${personas}', '${puertas}','${cambio}','${maletas}','${tipo}', '${precioDia}')`
-    console.log(insert)
     connMySQL.query(insert, (err, resultado, fields) => {
         if (err) throw err
-        res.redirect("private/index")  // Redirect to index page
+        res.redirect("/")  // Redirect to index page
       })
 })
 
-// (UPDATE) loading form page -- id:0 for new model
+// ----- 2 : update vehicle -----
 routerPriv.get("/stock/:id_modelo", (req, res) => {
     const {id_modelo} = req.params;
     const select = `SELECT * FROM modelos WHERE id_modelo = ${id_modelo}`;
-    console.log(select);
-
     connMySQL.query(select, (err, resultado, fields) => {
        if (err) throw err;
        console.log(resultado)
@@ -67,18 +63,14 @@ routerPriv.get("/stock/:id_modelo", (req, res) => {
     })
 })
 //  ↓
-// (UPDATE) getting the /stock form information
+// ----- 2 : update button -----
 routerPriv.post("/update", (req, res) => {
     const {id_modelo, nombre_modelo, unidades_totales, personas, puertas, cambio, maletas, tipo, precioDia} = req.body
-    
     const update = `UPDATE modelos SET nombre_modelo = '${nombre_modelo}', unidades_totales = '${unidades_totales}', personas = '${personas}', puertas = '${puertas}', cambio = '${cambio}', maletas = '${maletas}', tipo = '${tipo}', precioDia = '${precioDia}' WHERE id_modelo = '${id_modelo}'`
-    console.log(update)
-
     connMySQL.query(update, (err, resultado, fields) => {
         if (err) throw err
-        res.redirect("private/index")  // Redirect to index page
+        res.redirect("/")  // Redirect to index page
       })
-
 })
 
 // 404

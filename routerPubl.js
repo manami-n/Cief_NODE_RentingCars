@@ -76,7 +76,7 @@ routerPubl.get("/:tp/:md", (req, res) => {
         if (err) throw err;
         // when there's no such type in DB
         if (resVehiculo.length === 0) {
-            res.status(404).render("public/error", {
+            return res.status(404).render("public/error", {
                 titulo: "404", 
                 nav
             });
@@ -86,7 +86,9 @@ routerPubl.get("/:tp/:md", (req, res) => {
             titulo: tp,
             vc: resVehiculo[0],
             msj: req.query.m, // flagment of coming back from the /reservar page
-            nav
+            nav,
+            oops : "No hay disponibilidad en días elegionados.",
+            fecha : "No puedes elegir la fecha de entrega antes de la fecha de recogida."
         })
     })
 })
@@ -95,6 +97,11 @@ routerPubl.get("/:tp/:md", (req, res) => {
 // ----- 3 : availability check page ------
 routerPubl.post("/disponibl", (req, res) => {
     const request = req.body; // { id_modelo = 3, tipo = coche, input_recogida = 2024-05-30, input_entrega = 2024-05-31 } etc
+    //console.log(req.body)
+    if (request.input_recogida > request.input_entrega){
+        const redirectUrl = `/${request.tipo}/${request.id_modelo}?m=fecha`;
+            return res.redirect(redirectUrl);
+    }
     const consulta = `SELECT md.unidades_totales - COUNT(al.id_modelo) AS libre
                         FROM alquileres al
                         INNER JOIN modelos md
@@ -121,7 +128,7 @@ routerPubl.post("/disponibl", (req, res) => {
                 req.session.request = resTotal[0]
                 //console.log('After setting session:', req.session);
                 // redirect to the /reservar page, sending the info.
-                res.render("public/disponibl", {
+                return res.render("public/disponibl", {
                     titulo: "Reservar",
                     rq: req.session.request,
                     nav
@@ -131,7 +138,7 @@ routerPubl.post("/disponibl", (req, res) => {
         } else {
             // flagment of the unavailable message.
             const redirectUrl = `/${request.tipo}/${request.id_modelo}?m=oops`;
-            res.redirect(redirectUrl);
+            return res.redirect(redirectUrl);
         }
     })
 })
@@ -228,13 +235,6 @@ routerPubl.get('*', (req, res) => {
         nav
     });;
 });
-
-// ----- error 404 -----
-//routerPubl.use((req,res) => {
-//    res.status(404).send("404 Not Found");
-//});
-
-
 
 //========================================
 

@@ -31,20 +31,26 @@
     <section id="oops">
         <div>
             <h2>Lo siento...</h2>
-            <p>No hay disponibilidad en días elegionados.</p>
+            <p id="mError">Ocurrido un Error.</p>
             <button type="button" id="oopsBtn">Cerrar</button>
         </div>
     </section>
     <script>
         window.onload = function() {
-        <% if (typeof msj !== 'undefined' && msj) {  %>
-            let oops = document.getElementById("oops");
-            let oopsBtn = document.getElementById("oopsBtn");
-            oops.style.display = "block";
-            oopsBtn.addEventListener("click", () => {
-                oops.style.display = "none";
-            });
-        <% } %> 
+            <% if (typeof msj !== 'undefined' && msj) { %>
+                let oops = document.getElementById("oops");
+                let oopsBtn = document.getElementById("oopsBtn");
+                let msjDOM = document.getElementById("mError");
+                <% if (msj == "oops") {%>
+                msjDOM.innerHTML = `<%= oops %>`;
+                <% } else if(msj == "fecha") { %>
+                msjDOM.innerHTML = `<%= fecha %>`;
+                <% } %>
+                oops.style.display = "block";
+                oopsBtn.addEventListener("click", () => {
+                    oops.style.display = "none";
+                });
+            <% } %> 
         };
         </script>
 <%- include("templates/footer.ejs") %>

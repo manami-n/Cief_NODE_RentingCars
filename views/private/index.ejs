@@ -1,0 +1,33 @@
+<%- include('templates/header.ejs') %>
+    
+<main>
+    <table class="lista-vc">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>En stock</th>
+                <th>En alquiler</th>
+                <th>Libre</th>
+                <th>Facturación</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% datos.forEach(vehiculo => { %>
+            <tr>
+                <td><%= vehiculo.nombre_modelo %></td>
+                <td><%= vehiculo.unidades_totales %></td>
+                <td><%= vehiculo.alquilado %></td>
+                <td><%= vehiculo.unidades_totales - vehiculo.alquilado %></td>
+                <td><% if(vehiculo.total_facturacion > 0){ %><%= vehiculo.total_facturacion %><% }else{%>0<%}%> €</td>
+                <td class="editar"><a href="/stock/<%= vehiculo.id_modelo %>"><img src="/icons/pen.svg" alt=""></a></td>
+            </tr>
+        <% }) %> 
+        </tbody>
+    </table>
+    <div>
+        <a class="boton" href="/stock">Añadir Nuevo</a>
+    </div>
+</main>
+</body>
+</html>

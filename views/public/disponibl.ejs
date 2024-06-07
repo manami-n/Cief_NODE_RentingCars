@@ -1,0 +1,33 @@
+<%- include("templates/header.ejs") %>
+        <section class="content">
+            <h2>¡Está disponible!<br>
+            Listo para reservar</h2>
+            <div class="disponibl">
+
+            <div>
+                <img src="/img/<%= rq.nombre_modelo %>.webp" alt="<%= rq.nombre_modelo %>">
+                <h3><%= rq.nombre_modelo %></h3>
+            </div>
+            <div class="factura">
+                <div>
+                    <h4>Fecha de recogida</h4>
+                    <p><%= rq.fecha_recogida %></p>
+                </div>
+                <div>
+                    <h4>Fecha de entrega</h4>
+                    <p><%= rq.fecha_entrega %></p>
+                </div>
+                <div class="precio">
+                    <h4>Precio Final</h4>
+                    <p><%= rq.precioTotal %>€</p>
+                    <p class="calc"><%= rq.precioDia %> € X <%= rq.periodo %> días</p>
+                </div>
+                <div class="submit">
+                    <form action="/cliente">
+                        <input type="submit" value="Continuar" class="button">
+                    </form>
+                </div>
+            </div>
+        </section>
+ 
+<%- include("templates/footer.ejs") %>

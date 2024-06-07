@@ -1,0 +1,58 @@
+<%- include("templates/header.ejs") %>
+        <section class="content revision">
+            <h2>Datos de Reservación</h2>
+            <div class="card">
+                <h3>Información de alquiler</h3>
+                <div>
+                    <h4>Nombre de Vehiculo</h4>
+                    <p><%= rq.nombre_modelo %></p>
+                </div>
+                <div>
+                    <h4>Fecha de recogida</h4>
+                    <p><%= rq.fecha_recogida %></p>
+                </div>
+                <div>
+                    <h4>Fecha de entrega</h4>
+                    <p><%= rq.fecha_entrega %></p>
+                </div>
+                <div>
+                    <h4>Precio Final</h4>
+                    <p><%= rq.precioTotal %>€</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Información de Cliente</h2>
+                <div>
+                    <h4>Nombre</h4>
+                    <p><%= cl.nombre %></p>
+                </div>
+                <div>
+                    <h4>Apellido</h4>
+                    <p><%= cl.apellido %></p>
+                </div>
+                <div>
+                    <h4>DNI</h4>
+                    <p><%= cl.dni %></p>
+                </div>
+                <div>
+                    <h4>Email</h4>
+                    <p><%= cl.email %></p>
+                </div>
+                <div>
+                    <h4>Teléfono</h4>
+                    <p><%= cl.tel %></p>
+                </div>
+            </div>
+            <div >
+                <form action="/confirmar" method="post">
+                    <input type="hidden" name="dni" value="<%= cl.dni %>">
+                    <input type="submit" value="Confirmar" class="button">
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

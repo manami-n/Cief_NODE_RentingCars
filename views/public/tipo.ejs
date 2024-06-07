@@ -1,0 +1,17 @@
+<%- include("templates/header.ejs") %>
+
+<section class="content catalogo">
+
+    <h2>Elige tu <%= titulo %> a alquilar</h2>
+
+    <% vehiculos.forEach((vehiculo) => {%>
+    <article class="card">
+        <a href="<%= vehiculo.tipo %>/<%=vehiculo.id_modelo%>">
+        <img src="/img/<%= vehiculo.nombre_modelo %>.webp" alt="<%= vehiculo.nombre_modelo %>">
+        <span><%= vehiculo.nombre_modelo %></span></a>
+    </article>
+    <% }) %>
+
+</section>
+
+<%- include("templates/footer.ejs") %>

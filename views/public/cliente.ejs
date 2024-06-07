@@ -1,0 +1,18 @@
+<%- include("templates/header.ejs") %>
+<section class="content cliente">
+    <h2>¿Ya has alquilado alguna vez?</h2> 
+    <div class="forms">
+        <form action="/verificar" method="post">
+            <h3>Soy cliente repetidor!</h3>
+            <input type="text" placeholder="Introduce tu DNI" name="dni">
+            <input class="button" type="submit" value="Verificar">
+        </form>
+        <form action="/registrar">
+            <h3>Soy nuevo cliente!</h3>
+            <button class="button">Registrar</button>
+        </form>
+    </div>
+</section> 
+</main>
+</body>
+</html>

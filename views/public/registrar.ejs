@@ -1,0 +1,58 @@
+<%- include("templates/header.ejs") %>
+        <section class="content">
+            <h2>Registrar Información Cliente</h2>
+            <form action="/revisar" method="post" class="narrow">
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" required min="2" max="50">
+                </div>
+                <div>
+                    <label for="apellido">Apellido</label>
+                    <input type="text" name="apellido" id="apellido" required min="2" max="100">
+                </div>
+                <div>
+                    <label for="dni">DNI</label>
+                    <input type="text" name="dni" id="dni" required  min="9" max="9">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required max="100">
+                </div>
+                <div>
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" required min="5" max="100">
+                </div>
+                <div>
+                    <label for="tel">Teléfono</label>
+                    <input type="text" name="tel" id="tel" required min="2" max="9">
+                </div>
+                <div>
+                    <label for="poblacio">Población</label>
+                    <input type="text" name="poblacio" id="poblacio" required min="2" max="100">
+                </div>
+                    <input type="submit" value="Registrar" class="button" required>
+            </form>
+        </section>
+        <section id="oops">
+            <div>
+                <h2>Lo siento...</h2>
+                <p>Cliente no encontrado con este DNI. <br>
+                    Por favor, registráte de nuevo. </p>
+                <button type="button" id="oopsBtn">Cerrar</button>
+            </div>
+        </section>
+    </main>
+    <script>
+        window.onload = function() {
+        <% if (typeof msj !== 'undefined' && msj) {  %>
+            let oops = document.getElementById("oops");
+            let oopsBtn = document.getElementById("oopsBtn");
+            oops.style.display = "block";
+            oopsBtn.addEventListener("click", () => {
+                oops.style.display = "none";
+            });
+        <% } %> 
+        };
+        </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoWheel·las Car Rentals | <%= titulo %></title>
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="content">
+            <img src="/img/gorilla.png" alt="logo" class="logo">
+            <h1><a href="/">GoWheel·las</a></h1>
+        </div>
+    </header>
+    <main>
+        <nav>
+            <ul class="content">
+                <% nav.forEach((i) => {%>
+                <li><a href="/<%= i.tipo %>"><%= i.tipo[0].toLocaleUpperCase()+i.tipo.slice(1)+"s" %></a></li>
+                <% }) %>
+            </ul>
+        </nav>

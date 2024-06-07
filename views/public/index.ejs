@@ -1,0 +1,15 @@
+<%- include("templates/header.ejs") %>
+
+<section class="content">
+
+    <h2>Elige el tipo de vehiculos a alquilar</h2>
+
+    <% nav.forEach((i) => {%>
+    <article class="tipo">
+        <a href="<%= i.tipo %>"><%= i.tipo[0].toLocaleUpperCase()+i.tipo.slice(1)+"s" %></a>
+    </article>
+    <% }) %>
+    
+</section>
+        
+<%- include("templates/footer.ejs") %>

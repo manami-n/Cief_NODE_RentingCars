@@ -1,0 +1,114 @@
+<%- include('templates/header.ejs') %>
+    <main>
+
+    <% if (id===0) { %>
+    <!-- (INSERT) -->
+    <form action="/insert" method="POST" >
+        <fieldset>
+        <div>
+            <label for="nombre">Nombre Modelo</label>
+            <input type="text" name="nombre_modelo" id="nombre" max="50" required>
+        </div>
+        <div>
+            <label for="unidades">Unidades Totales</label>
+            <input type="number" name="unidades_totales" id="unidades" max="99" required>
+        </div>
+        <div>
+            <label for="personas">Personas</label>
+            <input type="number" name="personas" id="personas" max="99" required>
+        </div>
+        <div>
+            <label for="puertas">Puertas</label>
+            <input type="number" name="puertas" id="puertas" max="9" required>
+        </div>
+        <div>
+            <label for="cambio">Cambio</label>
+            <select id="cambio" name="cambio">
+              <option value="manual">Manual</option>
+              <option value="automatico">Automatico</option>
+            </select>
+        </div>
+        <div>
+            <label for="maletas">Maletas</label>
+            <input type="number" name="maletas" id="maletas" max="9" required>
+        </div>
+        <div>
+            <label for="tipo">Tipo</label>
+            <input type="text" name="tipo" list="tipo" autocomplete="off" max="20" required>
+            <datalist id="tipo">
+                <option value="moto">
+                <option value="coche">
+                <option value="furgonetas">
+                <option value="bicicleta">
+            </datalist>
+        </div>
+        <div>
+            <label for="precio">Precio por Dia</label>
+            <input type="number" name="precioDia" id="precio" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
+        </div>
+        <div>
+            <input type="submit" value="Añadir" class="boton">
+            <input type="reset" value="Borrar" class="boton">
+            <a href="/" class="boton">Cancelar</a>
+        </div>
+        </fieldset>
+    </form>
+
+    <% } else { %>
+    <!-- (UPDATE) -->
+    <form action="/update" method="POST" >
+        <fieldset>
+        <input type="hidden" name="id_modelo" value="<%= datos.id_modelo %>" required>
+        <div>
+            <label for="nombre">Nombre Modelo</label>
+            <input type="text" name="nombre_modelo" id="nombre" max="50" value="<%= datos.nombre_modelo %>" required>
+        </div>
+        <div>
+            <label for="unidades">Unidades Totales</label>
+            <input type="number" name="unidades_totales" id="unidades" max="99" value="<%= datos.unidades_totales %>" required>
+        </div>
+        <div>
+            <label for="personas">Personas</label>
+            <input type="number" name="personas" id="personas" max="99" value="<%= datos.personas %>" required>
+        </div>
+        <div>
+            <label for="puertas">Puertas</label>
+            <input type="number" name="puertas" id="puertas" max="9" value="<%= datos.puertas %>" required>
+        </div>
+        <div>
+            <label for="cambio">Cambio</label>
+            <select id="cambio" name="cambio">
+              <option value="manual" <% if(datos.cambio === 'manual'){ %>selected<% } %>>Manual</option>
+              <option value="automatico" <% if(datos.cambio === 'automatico'){ %>selected<% } %>>Automatico</option>
+            </select>
+        </div>
+        <div>
+            <label for="maletas">Maletas</label>
+            <input type="number" name="maletas" id="maletas" max="9" value="<%= datos.maletas %>" required>
+        </div>
+        <div>
+            <label for="tipo">Tipo</label>
+            <input type="text" name="tipo" list="tipo" autocomplete="off" max="20" value="<%= datos.tipo %>" required>
+            <datalist id="tipo">
+                <option value="moto">
+                <option value="coche">
+                <option value="furgonetas">
+                <option value="bicicleta">
+            </datalist>
+        </div>
+        <div>
+            <label for="precio">Precio por Dia</label>
+            <input type="number" name="precioDia" id="precio" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" value="<%= datos.precioDia %>" required>
+        </div>
+        <div>
+            <input type="submit" value="Añadir" class="boton">
+            <input type="reset" value="Borrar" class="boton">
+            <a href="/" class="boton">Cancelar</a>
+        </div>
+        </fieldset>
+    </form>
+
+    <% } %>
+    </main>
+</body>
+</html>

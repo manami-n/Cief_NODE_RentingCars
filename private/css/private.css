@@ -1,0 +1,120 @@
+:root {
+    --color-primary: #416886;
+    --color-dark: #2b4559;
+    --color-white: #ffffff;
+    --color-gray: #eeeeee;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+h1{
+    text-align: center;
+    margin: 50px auto;
+    color: var(--color-primary);
+}
+
+.boton{
+    display: block;
+    width: fit-content;
+    padding: 10px 20px;
+    border: 3px solid var(--color-primary);
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    
+    margin: 30px auto;
+    border-radius: 10px;
+    transition-duration: .3s;
+}
+.boton:first-child{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.boton:hover{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+.boton:first-child:hover{
+    background-color: var(--color-dark);
+    border: 3px solid var(--color-dark);
+
+}
+
+/* list page (index) */
+.lista-vc{
+    margin: 0 auto;
+    width: clamp(400px, 80vw, 800px );
+    border-collapse: collapse;
+
+    th{
+        font-size: clamp(0.8rem, 2vw, 1.2rem);
+        padding: 10px 5px;
+        font-weight: 400;
+        border: 1px solid var(--color-gray);
+        background-color: var(--color-primary);
+        color: var(--color-white);
+    }
+    th:nth-of-type(2), th:nth-of-type(3), th:nth-of-type(4){
+        width: 10%;
+    }
+    td{
+        font-size: clamp(0.8rem, 2vw, 1.2rem);
+        padding: 10px 5px;
+        font-weight: 400;
+        text-align: right;
+        border: 1px solid var(--color-primary);
+        background-color: var(--color-white);
+    }
+    tr:nth-child(even) td{
+        background-color: var(--color-gray);
+    }
+    .editar {
+        text-align: center;
+        transition-duration: .3s;
+        img{ width: 20px;}
+    }
+    .editar:hover{
+        background-color: #e2e8ed;
+    }
+}
+
+
+/* stock page */
+form {
+    margin: 0 auto;
+    width: clamp(400px, 80vw, 800px );
+}
+fieldset {
+    border: 1px solid var(--color-primary);
+}
+form div {
+    padding: 20px 10px;
+    display: flex;
+
+    label{
+        width: 50%;
+        display: inline-block;
+        text-align: right;
+        padding-right: 15px;
+        font-size: clamp(0.8rem, 2.3vw, 1.2rem);
+        align-self: center;
+    }
+    input, select{
+        padding: 5px;
+        width: 50%;
+        font-size: clamp(0.8rem, 2.3vw, 1.2rem);
+        border: 1px solid var(--color-primary);
+        border-radius: 5px;
+        text-align: right;
+    }
+}
+form div:nth-child(even){
+    background-color: var(--color-gray);
+}

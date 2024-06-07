@@ -1,0 +1,50 @@
+<%- include("templates/header.ejs") %>
+
+        <section class="content modelo">
+            <div>
+                <h2><%= vc.nombre_modelo %></h2>
+                <img src="/img/<%= vc.nombre_modelo %>.webp" alt="<%= vc.nombre_modelo %>" class="img-principal">
+            </div>
+            <div>
+                <h3>Caracteristicas</h3>
+                <div class="charbox">
+                <ul>
+                    <li><img src="/icons/personas.svg" alt="" aria-hidden="true">Personas : <span><%= vc.personas %></span></li>
+                    <li><img src="/icons/puertas.svg" alt="" aria-hidden="true">Puertas : <span><%= vc.puertas %></span></li>
+                    <li><img src="/icons/cambio.svg" alt="" aria-hidden="true">Cambio : <span><%= vc.cambio %></span></li>
+                    <li><img src="/icons/maletas.svg" alt="" aria-hidden="true">Maletas : <span><%= vc.maletas %></span></li>
+                </ul>
+                <p class="por-dia">desde <span><%= vc.precioDia %>€</span> por día</p>
+                <p class="garantiza"><span>PRECIO FINAL GARANTIZADO</span></p>
+                <form action="/disponibl" method="POST">
+                    <input type="hidden" name="id_modelo" value="<%= vc.id_modelo %>">
+                    <input type="hidden" name="tipo" value="<%= vc.tipo %>">
+                    <label for="recogida">Fecha de Recogida</label>
+                    <input type="date" name="input_recogida" id="recogida" required>
+                    <label for="entrega">Fecha de Entrega</label>
+                    <input type="date" name="input_entrega" id="entrega" required>
+                    <input type="submit" value="Buscar">
+                </form>
+                </div>
+            </div>
+    </section>
+    <section id="oops">
+        <div>
+            <h2>Lo siento...</h2>
+            <p>No hay disponibilidad en días elegionados.</p>
+            <button type="button" id="oopsBtn">Cerrar</button>
+        </div>
+    </section>
+    <script>
+        window.onload = function() {
+        <% if (typeof msj !== 'undefined' && msj) {  %>
+            let oops = document.getElementById("oops");
+            let oopsBtn = document.getElementById("oopsBtn");
+            oops.style.display = "block";
+            oopsBtn.addEventListener("click", () => {
+                oops.style.display = "none";
+            });
+        <% } %> 
+        };
+        </script>
+<%- include("templates/footer.ejs") %>
